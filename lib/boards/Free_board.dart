@@ -51,9 +51,8 @@ class _Freeboard extends State<Free_board> {
   }
   Future getcontents() async {
     var data = await FirebaseFirestore.instance.collection('자유게시판').orderBy("날짜",descending: true).get();
-
     setState((){
-      contentslist = List.from(data.docs.map((doc) => contents.fromSnapshot(doc)));
+      contentslist = List.from(data.docs.map((doc) => contents.fromSnapshot(doc,doc.id)));
       print(contentslist);
     });
   }
